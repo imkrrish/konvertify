@@ -11,14 +11,22 @@
   },
   "dependencies": {
     "@tanstack/react-router": "^1.98.4",
+    "class-variance-authority": "^0.7.1",
+    "clsx": "^2.1.1",
+    "framer-motion": "^12.0.6",
+    "lucide-react": "^0.474.0",
+    "motion": "^12.0.6",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
-    "sass": "^1.83.4"
+    "sass": "^1.83.4",
+    "tailwind-merge": "^3.0.1",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
     "@tanstack/router-devtools": "^1.98.4",
     "@tanstack/router-plugin": "^1.98.6",
+    "@types/node": "^22.12.0",
     "@types/react": "^18.3.18",
     "@types/react-dom": "^18.3.5",
     "@vitejs/plugin-react-swc": "^3.5.0",
