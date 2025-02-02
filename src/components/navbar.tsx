@@ -5,6 +5,7 @@ import { cn } from "@/lib/utils";
 import { useLocation, useNavigate } from "@tanstack/react-router";
 import { Button } from "./ui/button";
 import { Github } from "./icons/github";
+import Sidebar from "./sidebar";
 
 export interface INavbarProps {}
 
@@ -15,21 +16,31 @@ const Navbar: FC<INavbarProps> = () => {
   return (
     <header className="sticky border-b-[0.5px] border-grid top-0 z-50 w-full bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
       <div className="myContainer flex items-center justify-between h-14">
-        {/* logo  */}
-        <div className="flex items-end gap-0.5">
-          <Logo className="text-primary" />
-          <p
-            className="-ml-1.5 font-semibold text-2xl"
-            style={{
-              lineHeight: 0.88,
+        <div className="flex items-center gap-2">
+          <Sidebar links={links} />
+          {/* logo  */}
+          <div
+            className="flex items-end gap-0.5 cursor-pointer"
+            onClick={() => {
+              navigate({
+                to: "/",
+              });
             }}
           >
-            onvertify
-          </p>
+            <Logo className="text-primary" />
+            <p
+              className="-ml-1.5 font-semibold text-2xl"
+              style={{
+                lineHeight: 0.88,
+              }}
+            >
+              onvertify
+            </p>
+          </div>
         </div>
 
-        <div className="flex items-center gap-6">
-          <div className="flex items-center gap-10">
+        <div className="flex items-center gap-5">
+          <div className="hidden sm:flex items-center gap-10">
             {links.map((link, i) => (
               <Navlink
                 key={i}
@@ -43,11 +54,11 @@ const Navbar: FC<INavbarProps> = () => {
               />
             ))}
           </div>
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3">
             <ModeToggle />
             <Button
               variant="default"
-              className="bg-textColor hover:bg-textColor hover:opacity-90"
+              className="bg-textColor hidden sm:flex hover:bg-textColor hover:opacity-90"
             >
               <Github />
               Github

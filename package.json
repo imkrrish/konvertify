@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@radix-ui/react-dialog": "^1.1.5",
     "@radix-ui/react-slot": "^1.1.1",
     "@tanstack/react-router": "^1.98.4",
     "class-variance-authority": "^0.7.1",
@@ -26,7 +27,6 @@
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
-    "@tanstack/router-devtools": "^1.98.4",
     "@tanstack/router-plugin": "^1.98.6",
     "@types/node": "^22.12.0",
     "@types/react": "^18.3.18",
