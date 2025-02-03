@@ -61,7 +61,7 @@ const Sidebar: FC<ISidebarProps> = ({ links }) => {
             </div>
           </SheetHeader>
 
-          <div className="flex flex-1 flex-col">
+          <div className="flex flex-1 flex-col font-public-sans">
             {links.map((link, i) => (
               <div
                 key={i}
