@@ -1,6 +1,6 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
-import { Card, CardContent } from "@/components/ui/card";
 import { FC } from "react";
+import FileConverter from "@/components/file-converter";
 
 export interface IHomeProps {}
 
@@ -22,10 +22,8 @@ const Home: FC<IHomeProps> = () => {
       </div>
 
       <div className="w-full myContainer flex-1 py-6">
-        <div className="rounded-3xl bg-foreground h-full flex flex-col gap-4 items-center justify-center p-6">
-          <Card className="w-full h-full">
-            <CardContent className="p-6 text-textColor"></CardContent>
-          </Card>
+        <div className="rounded-2xl bg-foreground flex flex-col gap-4 items-center justify-center p-6">
+          <FileConverter />
         </div>
       </div>
     </div>

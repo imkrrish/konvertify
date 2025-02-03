@@ -1,5 +1,6 @@
 import { FC } from "react";
 import ReactDropzone, { DropEvent, FileRejection } from "react-dropzone";
+import UploadFile from "./icons/upload-file";
 
 const accepted_files = {
   "image/*": [
@@ -49,10 +50,20 @@ const DropZone: FC<IDropZoneProps> = () => {
       {({ getRootProps, getInputProps }) => (
         <div
           {...getRootProps()}
-          className="bg-background h-72 lg:h-80 xl:h-96 rounded-3xl shadow-sm border-secondary border-2 border-dashed cursor-pointer flex items-center justify-center"
+          className="cursor-pointer border p-10 rounded-lg border-dashed border-[rgba(145,158,171,0.2)] bg-[rgba(145,158,171,0.08)] hover:opacity-[0.72] transition-all ease-in-out"
         >
           <input {...getInputProps()} />
-          <div className="space-y-4 text-foreground">Drop</div>
+          <div className="flex items-center gap-2 font-public-sans justify-center flex-col">
+            <div className="w-52">
+              <UploadFile />
+            </div>
+            <h3 className="font-semibold text-lg">Drop or select file</h3>
+            <p className="text-[#919eab] font-normal text-sm">
+              Drop files here or click to{" "}
+              <span className="text-primary underline">browse</span> through
+              your machine.
+            </p>
+          </div>
         </div>
       )}
     </ReactDropzone>
