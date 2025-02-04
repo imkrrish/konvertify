@@ -11,19 +11,25 @@
   },
   "dependencies": {
     "@radix-ui/react-dialog": "^1.1.5",
+    "@radix-ui/react-select": "^2.1.5",
     "@radix-ui/react-slot": "^1.1.1",
+    "@radix-ui/react-tabs": "^1.1.2",
     "@tanstack/react-router": "^1.98.4",
     "class-variance-authority": "^0.7.1",
     "clsx": "^2.1.1",
     "framer-motion": "^12.0.6",
+    "immer": "^10.1.1",
     "lucide-react": "^0.474.0",
     "motion": "^12.0.6",
+    "next-themes": "^0.4.4",
     "react": "^18.3.1",
     "react-dom": "^18.3.1",
     "react-dropzone": "^14.3.5",
     "sass": "^1.83.4",
+    "sonner": "^1.7.4",
     "tailwind-merge": "^3.0.1",
-    "tailwindcss-animate": "^1.0.7"
+    "tailwindcss-animate": "^1.0.7",
+    "uuid": "^11.0.5"
   },
   "devDependencies": {
     "@eslint/js": "^9.17.0",
