@@ -4,9 +4,11 @@ import UploadFile from "./icons/upload-file";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
 import { accepted_files } from "@/utils/constants";
+import { IFile } from "@/types";
+import { randomString } from "@/utils";
 
 export interface IDropZoneProps {
-  onUpload: (files: File[]) => void;
+  onUpload: (files: IFile[]) => void;
 }
 
 const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
@@ -14,7 +16,23 @@ const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
 
   const handleUpload = <T extends File>(acceptedFiles: T[]): void => {
     handleExitHover();
-    onUpload(acceptedFiles);
+    if (!acceptedFiles.length) return;
+    const newFiles = acceptedFiles.map((file) => {
+      const id = randomString();
+      return {
+        id,
+        file,
+        file_name: file.name,
+        file_size: file.size,
+        from: file.name.slice(((file.name.lastIndexOf(".") - 1) >>> 0) + 2),
+        to: null,
+        file_type: file.type,
+        is_converted: false,
+        is_converting: false,
+        is_error: false,
+      };
+    });
+    onUpload(newFiles);
   };
 
   const handleHover = (): void => {

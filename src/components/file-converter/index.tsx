@@ -2,7 +2,6 @@ import { FC } from "react";
 import { Card, CardContent } from "../ui/card";
 import DropZone from "../drop-zone";
 import { useAppContext } from "../app-context-provider";
-import { randomString } from "@/utils";
 import { produce } from "immer";
 import FilePreview from "../file-preview";
 
@@ -19,27 +18,9 @@ const FileConverter: FC<IFileConverterProps> = () => {
 
         <DropZone
           onUpload={(val) => {
-            if (!val.length) return;
-            const newFiles = val.map((file) => {
-              const id = randomString();
-              return {
-                id,
-                file,
-                file_name: file.name,
-                file_size: file.size,
-                from: file.name.slice(
-                  ((file.name.lastIndexOf(".") - 1) >>> 0) + 2
-                ),
-                to: null,
-                file_type: file.type,
-                is_converted: false,
-                is_converting: false,
-                is_error: false,
-              };
-            });
             setFiles((prev) => {
               return produce(prev, (draft) => {
-                return [...draft, ...newFiles];
+                return [...draft, ...val];
               });
             });
           }}
