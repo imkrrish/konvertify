@@ -21,15 +21,18 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
   fileType,
   onSelect,
 }) => {
-  const defaultTab = useMemo(() => {
-    if (extensions.audio.includes(value || "")) {
-      return "audio";
-    } else if (extensions.video.includes(value || "")) {
-      return "video";
-    } else {
-      return "video";
+  const defaultTab = useMemo(
+    () => (extensions.audio.includes(value || "") ? "audio" : "video"),
+    [value, extensions.audio, extensions.video]
+  );
+
+  const getValue = (value: string): string => {
+    const lowerValue = value.toLowerCase();
+    for (const [_, extList] of Object.entries(extensions)) {
+      if (extList.includes(lowerValue)) return value;
     }
-  }, [value]);
+    return "";
+  };
 
   return (
     <Select value={value || ""} onValueChange={onSelect}>
@@ -40,7 +43,9 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
               Convert to
             </p>
           }
-        />
+        >
+          .{getValue(value || "")}
+        </SelectValue>
       </SelectTrigger>
       <SelectContent className="bg-background border-[rgba(145,158,171,0.2)] rounded-lg p-1">
         {/* if file_type is image */}
@@ -56,7 +61,7 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
                     value === ext && "bg-foreground"
                   )}
                 >
-                  {ext}
+                  .{ext}
                 </SelectItem>
               </div>
             ))}
@@ -76,7 +81,7 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
                     value === ext && "bg-foreground"
                   )}
                 >
-                  {ext}
+                  .{ext}
                 </SelectItem>
               </div>
             ))}
@@ -112,7 +117,7 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
                         value === ext && "bg-foreground"
                       )}
                     >
-                      {ext}
+                      .{ext}
                     </SelectItem>
                   </div>
                 ))}
@@ -129,7 +134,7 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
                         value === ext && "bg-foreground"
                       )}
                     >
-                      {ext}
+                      .{ext}
                     </SelectItem>
                   </div>
                 ))}
