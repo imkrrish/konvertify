@@ -9,9 +9,10 @@ import { randomString } from "@/utils";
 
 export interface IDropZoneProps {
   onUpload: (files: IFile[]) => void;
+  disabled?: boolean;
 }
 
-const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
+const DropZone: FC<IDropZoneProps> = ({ onUpload, disabled = false }) => {
   const [is_hover, setIsHover] = useState(false);
 
   const handleUpload = <T extends File>(acceptedFiles: T[]): void => {
@@ -45,6 +46,7 @@ const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
 
   return (
     <ReactDropzone
+      disabled={disabled}
       onDrop={handleUpload}
       onDragEnter={handleHover}
       onDragLeave={handleExitHover}
@@ -75,7 +77,8 @@ const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
           {...getRootProps()}
           className={cn(
             "cursor-pointer border p-4 sm:p-10 rounded-lg border-dashed border-[rgba(145,158,171,0.2)] bg-[rgba(145,158,171,0.08)] hover:opacity-[0.72] transition-all ease-in-out",
-            is_hover && "opacity-[0.72]"
+            is_hover && "opacity-[0.72]",
+            disabled && "opacity-[0.72] cursor-not-allowed"
           )}
         >
           <input {...getInputProps()} />

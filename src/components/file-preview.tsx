@@ -26,7 +26,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
     is_converted,
     is_error,
   } = file;
-  const { setFiles } = useAppContext();
+  const { setFiles, isConverting } = useAppContext();
   return (
     <div className="flex flex-col sm:flex-row relative items-start  sm:items-center gap-3 rounded-lg border border-[rgba(145,158,171,0.16)] py-2 pr-2 pl-3">
       <div className="flex items-center gap-3 flex-1">
@@ -56,7 +56,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
           <SelectExtension
             fileType={file_type}
             value={file.to}
-            disabled={is_converting}
+            disabled={is_converting || isConverting}
             onSelect={(val) => {
               if (val) {
                 setFiles((prev) => {
@@ -79,7 +79,8 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
         )}
       </div>
       <button
-        className="absolute top-0.5 right-0.5 sm:static h-[26px] w-[26px] rounded-full text-[#637381] dark:text-[#919EAB] bg-transparent dark:hover:bg-[rgba(145,158,171,0.08)] hover:bg-[rgba(99,115,129,0.08)] flex items-center justify-center"
+        disabled={is_converting || isConverting}
+        className="absolute disabled:cursor-not-allowed top-0.5 right-0.5 sm:static h-[26px] w-[26px] rounded-full text-[#637381] dark:text-[#919EAB] bg-transparent dark:hover:bg-[rgba(145,158,171,0.08)] hover:bg-[rgba(99,115,129,0.08)] flex items-center justify-center"
         style={{
           transition: "background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
