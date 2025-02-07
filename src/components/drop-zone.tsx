@@ -74,7 +74,7 @@ const DropZone: FC<IDropZoneProps> = ({ onUpload }) => {
         <div
           {...getRootProps()}
           className={cn(
-            "cursor-pointer border p-10 rounded-lg border-dashed border-[rgba(145,158,171,0.2)] bg-[rgba(145,158,171,0.08)] hover:opacity-[0.72] transition-all ease-in-out",
+            "cursor-pointer border p-4 sm:p-10 rounded-lg border-dashed border-[rgba(145,158,171,0.2)] bg-[rgba(145,158,171,0.08)] hover:opacity-[0.72] transition-all ease-in-out",
             is_hover && "opacity-[0.72]"
           )}
         >

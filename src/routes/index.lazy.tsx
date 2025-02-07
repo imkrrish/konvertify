@@ -22,7 +22,7 @@ const Home: FC<IHomeProps> = () => {
       </div>
 
       <div className="w-full myContainer flex-1 py-6">
-        <div className="rounded-2xl bg-foreground flex flex-col gap-4 items-center justify-center p-6">
+        <div className="rounded-2xl bg-foreground flex flex-col gap-4 items-center justify-center p-4 sm:p-6">
           <FileConverter />
         </div>
       </div>
