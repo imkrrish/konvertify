@@ -67,10 +67,6 @@ const truncateMiddle = (name: string, maxWidth: number): string => {
     const tempTruncated =
       baseName.slice(0, left) + "..." + baseName.slice(right) + ext;
     if (ctx.measureText(tempTruncated + ext).width <= maxWidth) {
-      console.log({
-        width: ctx.measureText(tempTruncated + ext).width,
-        maxWidth,
-      });
       truncated = tempTruncated;
       break;
     }
