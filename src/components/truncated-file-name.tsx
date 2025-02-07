@@ -1,28 +1,45 @@
 import { cn } from "@/lib/utils";
-import { FC, useEffect, useRef, useState } from "react";
+import {
+  forwardRef,
+  useEffect,
+  useImperativeHandle,
+  useRef,
+  useState,
+} from "react";
 
 export interface ITruncatedFileNameProps {
   file_name: string;
 }
 
-const TruncatedFileName: FC<ITruncatedFileNameProps> = ({ file_name }) => {
-  const ref = useRef<HTMLParagraphElement>(null);
+export interface ITruncatedFileNameRef {
+  checkOverflow: () => void;
+}
+
+const TruncatedFileName = forwardRef<
+  ITruncatedFileNameRef,
+  ITruncatedFileNameProps
+>(({ file_name }, ref) => {
+  const text_ref = useRef<HTMLParagraphElement>(null);
   const [isOverflowed, setIsOverflowed] = useState(false);
   const [truncatedName, setTruncatedName] = useState(file_name);
 
+  const checkOverflow = () => {
+    if (!text_ref.current) return;
+    const isTextOverflowing = text_ref.current.scrollHeight > 20;
+    setIsOverflowed(isTextOverflowing);
+
+    if (isTextOverflowing) {
+      setTruncatedName(truncateMiddle(file_name, text_ref.current.clientWidth));
+    } else {
+      setTruncatedName(file_name);
+    }
+  };
+
+  useImperativeHandle(ref, () => ({
+    checkOverflow,
+  }));
+
   useEffect(() => {
-    const checkOverflow = () => {
-      if (!ref.current) return;
-      const isTextOverflowing = ref.current.scrollHeight > 20;
-      setIsOverflowed(isTextOverflowing);
-
-      if (isTextOverflowing) {
-        setTruncatedName(truncateMiddle(file_name, ref.current.clientWidth));
-      } else {
-        setTruncatedName(file_name);
-      }
-    };
-
     checkOverflow();
     window.addEventListener("resize", checkOverflow);
     return () => window.removeEventListener("resize", checkOverflow);
@@ -31,7 +48,7 @@ const TruncatedFileName: FC<ITruncatedFileNameProps> = ({ file_name }) => {
   return (
     <>
       <p
-        ref={ref}
+        ref={text_ref}
         className={cn(
           "font-semibold text-textColor text-sm",
           isOverflowed && "cursor-pointer"
@@ -41,7 +58,7 @@ const TruncatedFileName: FC<ITruncatedFileNameProps> = ({ file_name }) => {
       </p>
     </>
   );
-};
+});
 
 export default TruncatedFileName;
 
