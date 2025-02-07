@@ -14,12 +14,14 @@ export interface ISelectExtensionProps {
   fileType: string;
   value?: string | null;
   onSelect: (val: string) => void;
+  disabled?: boolean;
 }
 
 const SelectExtension: FC<ISelectExtensionProps> = ({
   value,
   fileType,
   onSelect,
+  disabled = false,
 }) => {
   const defaultTab = useMemo(
     () => (extensions.audio.includes(value || "") ? "audio" : "video"),
@@ -35,7 +37,7 @@ const SelectExtension: FC<ISelectExtensionProps> = ({
   };
 
   return (
-    <Select value={value || ""} onValueChange={onSelect}>
+    <Select value={value || ""} onValueChange={onSelect} disabled={disabled}>
       <SelectTrigger className="w-fit min-w-[98px] select-none font-public-sans font-semibold text-xs text-textColor border-[rgba(145,158,171,0.32)] shadow-none outline-none focus:outline-none focus:ring-0 gap-1 rounded-lg h-[30px] px-2">
         <SelectValue
           placeholder={
