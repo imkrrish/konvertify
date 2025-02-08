@@ -1,7 +1,7 @@
 import { FC } from "react";
 import { IFile } from "@/types";
 import FilethumbIcon from "./icons/files/filethumb-icon";
-import bytesToSize from "@/utils";
+import bytesToSize from "@/lib";
 import { MingcuteCloseLine } from "./icons/cross";
 import SelectExtension from "./select-file-extension";
 import { useAppContext } from "./app-context-provider";
@@ -27,6 +27,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
     is_error,
   } = file;
   const { setFiles, isConverting } = useAppContext();
+
   return (
     <div className="flex flex-col sm:flex-row relative items-start  sm:items-center gap-3 rounded-lg border border-[rgba(145,158,171,0.16)] py-2 pr-2 pl-3">
       <div className="flex items-center gap-3 flex-1">

@@ -6,7 +6,7 @@ import {
   SelectContent,
   SelectItem,
 } from "./ui/select";
-import { extensions } from "@/utils/constants";
+import { extensions } from "@/lib/constants";
 import { Tabs, TabsContent, TabsList, TabsTrigger } from "./ui/tabs";
 import { cn } from "@/lib/utils";
 

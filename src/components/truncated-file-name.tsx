@@ -20,14 +20,11 @@ const TruncatedFileName = forwardRef<
   ITruncatedFileNameProps
 >(({ file_name }, ref) => {
   const text_ref = useRef<HTMLParagraphElement>(null);
-  const [isOverflowed, setIsOverflowed] = useState(false);
   const [truncatedName, setTruncatedName] = useState(file_name);
 
   const checkOverflow = () => {
     if (!text_ref.current) return;
     const isTextOverflowing = text_ref.current.scrollHeight > 20;
-    setIsOverflowed(isTextOverflowing);
-
     if (isTextOverflowing) {
       setTruncatedName(truncateMiddle(file_name, text_ref.current.clientWidth));
     } else {
@@ -47,13 +44,7 @@ const TruncatedFileName = forwardRef<
 
   return (
     <>
-      <p
-        ref={text_ref}
-        className={cn(
-          "font-semibold text-textColor text-sm",
-          isOverflowed && "cursor-pointer"
-        )}
-      >
+      <p ref={text_ref} className={cn("font-semibold text-textColor text-sm")}>
         {truncatedName}
       </p>
     </>

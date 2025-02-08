@@ -3,9 +3,9 @@ import ReactDropzone from "react-dropzone";
 import UploadFile from "./icons/upload-file";
 import { cn } from "@/lib/utils";
 import { toast } from "sonner";
-import { accepted_files } from "@/utils/constants";
+import { accepted_files } from "@/lib/constants";
 import { IFile } from "@/types";
-import { randomString } from "@/utils";
+import { randomString } from "@/lib";
 
 export interface IDropZoneProps {
   onUpload: (files: IFile[]) => void;

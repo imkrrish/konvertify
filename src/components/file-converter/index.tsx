@@ -11,7 +11,8 @@ import { LoaderOutline } from "../icons/loader";
 export interface IFileConverterProps {}
 
 const FileConverter: FC<IFileConverterProps> = () => {
-  const { files, setFiles, isConverting, isConverted } = useAppContext();
+  const { files, setFiles, isConverting, isConverted, onConvertAll } =
+    useAppContext();
   return (
     <Card className="w-full border-none rounded-2xl">
       <CardContent className="text-textColor p-4 sm:p-6">
@@ -56,6 +57,7 @@ const FileConverter: FC<IFileConverterProps> = () => {
                 variant="default"
                 disabled={isConverting}
                 className="bg-textColor gap-1 select-none rounded-lg h-[30px] font-public-sans font-semibold text-xs flex hover:bg-textColor shadow-none hover:opacity-90"
+                onClick={onConvertAll}
               >
                 {isConverting ? (
                   <>
@@ -63,7 +65,7 @@ const FileConverter: FC<IFileConverterProps> = () => {
                     Converting
                   </>
                 ) : (
-                  "Convert All"
+                  "Convert"
                 )}
               </Button>
             </div>
