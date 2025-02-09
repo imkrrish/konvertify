@@ -23,8 +23,8 @@ type IAppContext = null | {
   setIsConverted: React.Dispatch<React.SetStateAction<boolean>>;
 
   onConvertAll: () => Promise<void>;
-  // onDownloadAll: () => void;
-  // onDownload: () => void;
+  onDownloadAll: () => void;
+  onDownload: (file: IFile) => void;
 };
 
 const AppContext = createContext<IAppContext>(null);
@@ -43,13 +43,20 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
     setFiles((prevFiles) =>
       produce(prevFiles, (draft) => {
         draft.forEach((file) => {
+          if (file.is_converted || file.is_error) {
+            return;
+          }
           file.is_converting = true;
         });
       })
     );
+
     setIsConverting(true);
 
     for (const file of files) {
+      if (file.is_converted || file.is_error) {
+        return;
+      }
       try {
         // Perform file conversion
         const { url, output } = await convertFile(ffmpegRef.current, file);
@@ -87,10 +94,6 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
     setIsConverting(false);
   };
 
-  useEffect(() => {
-    load();
-  }, []);
-
   const load = async () => {
     const ffmpeg_response = await loadFfmpeg();
     if (!ffmpeg_response) {
@@ -100,6 +103,30 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
       console.log("FFmpeg is ready to use!");
     }
     setIsLoaded(true);
+  };
+
+  useEffect(() => {
+    load();
+  }, []);
+
+  const onDownload = (file: IFile) => {
+    const a = document.createElement("a");
+    a.style.display = "none";
+    a.href = file.url || "";
+    a.download = file.output || "";
+
+    document.body.appendChild(a);
+    a.click();
+
+    // Clean up after download
+    URL.revokeObjectURL(file.url || "");
+    document.body.removeChild(a);
+  };
+
+  const onDownloadAll = (): void => {
+    for (let file of files) {
+      !file.is_error && onDownload(file);
+    }
   };
 
   return (
@@ -115,6 +142,8 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
         setIsConverting,
         setIsConverted,
         onConvertAll,
+        onDownload,
+        onDownloadAll,
       }}
     >
       {children}

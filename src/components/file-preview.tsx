@@ -26,6 +26,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
     is_converted,
     is_error,
   } = file;
+
   const { setFiles, isConverting } = useAppContext();
 
   return (
