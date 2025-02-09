@@ -22,6 +22,7 @@ type IAppContext = null | {
   setIsConverting: React.Dispatch<React.SetStateAction<boolean>>;
   setIsConverted: React.Dispatch<React.SetStateAction<boolean>>;
 
+  onRemoveFile: (id: string) => void;
   onConvertAll: () => Promise<void>;
   onDownloadAll: () => void;
   onDownload: (file: IFile) => void;
@@ -130,6 +131,22 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
     }
   };
 
+  const onRemoveFile = (id: string) => {
+    const updatedFiles = produce(files, (draft) => {
+      draft = draft.filter((val) => {
+        return val.id !== id;
+      });
+      return draft;
+    });
+
+    if (updatedFiles.length === 0) {
+      setIsConverted(false);
+      setIsConverting(false);
+    }
+
+    setFiles(updatedFiles);
+  };
+
   return (
     <AppContext.Provider
       value={{
@@ -145,6 +162,7 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
         onConvertAll,
         onDownload,
         onDownloadAll,
+        onRemoveFile,
       }}
     >
       {children}

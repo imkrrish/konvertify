@@ -27,7 +27,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
     is_error,
   } = file;
 
-  const { setFiles, isConverting, onDownload } = useAppContext();
+  const { setFiles, isConverting, onDownload, onRemoveFile } = useAppContext();
 
   return (
     <div className="flex flex-col sm:flex-row relative items-start  sm:items-center gap-3 rounded-lg border border-[rgba(145,158,171,0.16)] py-2 pr-2 pl-3">
@@ -92,14 +92,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
           transition: "background-color 150ms cubic-bezier(0.4, 0, 0.2, 1)",
         }}
         onClick={() => {
-          setFiles((prev) => {
-            return produce(prev, (draft) => {
-              draft = draft.filter((val) => {
-                return val.id !== file.id;
-              });
-              return draft;
-            });
-          });
+          onRemoveFile(file.id);
         }}
       >
         <MingcuteCloseLine width={16} height={16} />
