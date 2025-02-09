@@ -69,6 +69,7 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
                 item.is_converting = false;
                 item.url = url;
                 item.output = output;
+                item.file_name = output;
               }
             })
           );

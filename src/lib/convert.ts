@@ -3,12 +3,12 @@ import { FFmpeg } from "@ffmpeg/ffmpeg";
 import { fetchFile } from "@ffmpeg/util";
 
 // Extracts file extension from a given filename
-function getFileExtension(fileName: string): string {
+export function getFileExtension(fileName: string): string {
   return fileName.split(".").pop() || "";
 }
 
 // Removes file extension from a given filename
-function removeFileExtension(fileName: string): string {
+export function removeFileExtension(fileName: string): string {
   return fileName.substring(0, fileName.lastIndexOf(".")) || fileName;
 }
 

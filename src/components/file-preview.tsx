@@ -6,12 +6,12 @@ import { MingcuteCloseLine } from "./icons/cross";
 import SelectExtension from "./select-file-extension";
 import { useAppContext } from "./app-context-provider";
 import { produce } from "immer";
-import TruncatedFileName from "./truncated-file-name";
 import { ArrowCircleDownFill } from "./icons/arrow-circle-down-fill";
 import { cn } from "@/lib/utils";
 import { SmilingFaceFill } from "./icons/smiling-face";
 import { AlertTriangleOutline } from "./icons/alert-trinagle";
 import { LoaderOutline } from "./icons/loader";
+import FileName from "./file-name";
 
 export interface IFilePreviewProps {
   file: IFile;
@@ -34,7 +34,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
       <div className="flex items-center gap-3 flex-1">
         <FilethumbIcon width={36} height={36} fileFormat={file_type} />
         <div className="flex-1 font-public-sans flex flex-col items-start justify-start">
-          <TruncatedFileName file_name={file_name} />
+          <FileName file_name={file_name} />
           <p className="text-[#637381] dark:text-[#919EAB] font-normal text-xs">
             {bytesToSize(file_size)}
           </p>
