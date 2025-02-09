@@ -1,5 +1,12 @@
 import { FC, useState } from "react";
-import { Sheet, SheetContent, SheetHeader, SheetTrigger } from "./ui/sheet";
+import {
+  Sheet,
+  SheetContent,
+  SheetDescription,
+  SheetHeader,
+  SheetTitle,
+  SheetTrigger,
+} from "./ui/sheet";
 import Logo from "./icons/logo";
 import MenuIcon from "./icons/menu";
 import { useLocation, useNavigate } from "@tanstack/react-router";
@@ -41,6 +48,10 @@ const Sidebar: FC<ISidebarProps> = ({ links }) => {
           }}
         >
           <SheetHeader className="px-5 pt-6 pb-4">
+            <SheetTitle className="sr-only">Konvertify</SheetTitle>
+            <SheetDescription className="sr-only">
+              Konvertify Sidebar
+            </SheetDescription>
             <div
               className="flex items-end gap-0.5"
               onClick={() => {

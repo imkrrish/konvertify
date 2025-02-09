@@ -20,7 +20,7 @@ const Navbar: FC<INavbarProps> = () => {
           <Sidebar links={links} />
           {/* logo  */}
           <div
-            className="flex items-end gap-0.5 cursor-pointer"
+            className="flex items-end gap-0.5 cursor-pointer select-none"
             onClick={() => {
               navigate({
                 to: "/",
@@ -72,7 +72,7 @@ const Navbar: FC<INavbarProps> = () => {
 
 export default Navbar;
 
-const links = [
+export const links = [
   {
     url: "/",
     label: "Home",

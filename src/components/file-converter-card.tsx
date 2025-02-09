@@ -57,7 +57,7 @@ const FileConverterCard: FC<IFileConverterCardProps> = () => {
               ))}
             </div>
 
-            <div className="flex items-center justify-end gap-3">
+            <div className="flex items-center justify-end gap-3 pt-2">
               {isConverted && (
                 <Button
                   variant="outline"
