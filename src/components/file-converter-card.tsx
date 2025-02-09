@@ -1,16 +1,16 @@
 import { FC } from "react";
-import { Card, CardContent } from "../ui/card";
-import DropZone from "../drop-zone";
-import { useAppContext } from "../app-context-provider";
+import { Card, CardContent } from "./ui/card";
+import DropZone from "./drop-zone";
+import { useAppContext } from "./app-context-provider";
 import { produce } from "immer";
-import FilePreview from "../file-preview";
-import { Button } from "../ui/button";
-import { ArrowCircleDownFill } from "../icons/arrow-circle-down-fill";
-import { LoaderOutline } from "../icons/loader";
+import FilePreview from "./file-preview";
+import { Button } from "./ui/button";
+import { ArrowCircleDownFill } from "./icons/arrow-circle-down-fill";
+import { LoaderOutline } from "./icons/loader";
 
-export interface IFileConverterProps {}
+export interface IFileConverterCardProps {}
 
-const FileConverter: FC<IFileConverterProps> = () => {
+const FileConverterCard: FC<IFileConverterCardProps> = () => {
   const {
     files,
     setFiles,
@@ -91,4 +91,4 @@ const FileConverter: FC<IFileConverterProps> = () => {
   );
 };
 
-export default FileConverter;
+export default FileConverterCard;
