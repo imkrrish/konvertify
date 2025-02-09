@@ -54,38 +54,37 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
     setIsConverting(true);
 
     for (const file of files) {
-      if (file.is_converted || file.is_error) {
-        return;
-      }
-      try {
-        // Perform file conversion
-        const { url, output } = await convertFile(ffmpegRef.current, file);
+      if (!file.is_converted && !file.is_error) {
+        try {
+          // Perform file conversion
+          const { url, output } = await convertFile(ffmpegRef.current, file);
 
-        // Update the action state upon successful conversion
-        setFiles((prevFiles) =>
-          produce(prevFiles, (draft) => {
-            const item = draft.find((elt) => elt.id === file.id);
-            if (item) {
-              item.is_converted = true;
-              item.is_converting = false;
-              item.url = url;
-              item.output = output;
-            }
-          })
-        );
-      } catch (error) {
-        console.error(`Failed to convert File <${file.file_name}>:`, error);
-        // Handle conversion failure and update action state
-        setFiles((prevFiles) =>
-          produce(prevFiles, (draft) => {
-            const item = draft.find((elt) => elt.id === file.id);
-            if (item) {
-              item.is_converted = false;
-              item.is_converting = false;
-              item.is_error = true;
-            }
-          })
-        );
+          // Update the action state upon successful conversion
+          setFiles((prevFiles) =>
+            produce(prevFiles, (draft) => {
+              const item = draft.find((elt) => elt.id === file.id);
+              if (item) {
+                item.is_converted = true;
+                item.is_converting = false;
+                item.url = url;
+                item.output = output;
+              }
+            })
+          );
+        } catch (error) {
+          console.error(`Failed to convert File <${file.file_name}>:`, error);
+          // Handle conversion failure and update action state
+          setFiles((prevFiles) =>
+            produce(prevFiles, (draft) => {
+              const item = draft.find((elt) => elt.id === file.id);
+              if (item) {
+                item.is_converted = false;
+                item.is_converting = false;
+                item.is_error = true;
+              }
+            })
+          );
+        }
       }
     }
 
@@ -125,7 +124,9 @@ export const AppProviderContext = ({ children }: IAppProviderContextProps) => {
 
   const onDownloadAll = (): void => {
     for (let file of files) {
-      !file.is_error && onDownload(file);
+      if (file.is_converted && !file.is_error && !file.is_converting) {
+        onDownload(file);
+      }
     }
   };
 

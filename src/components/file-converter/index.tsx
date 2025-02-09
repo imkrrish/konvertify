@@ -11,8 +11,22 @@ import { LoaderOutline } from "../icons/loader";
 export interface IFileConverterProps {}
 
 const FileConverter: FC<IFileConverterProps> = () => {
-  const { files, setFiles, isConverting, isConverted, onConvertAll } =
-    useAppContext();
+  const {
+    files,
+    setFiles,
+    isConverting,
+    isConverted,
+    onConvertAll,
+    onDownloadAll,
+  } = useAppContext();
+
+  function canConvertAllFiles(): boolean {
+    if (!files || files.length === 0) {
+      return false;
+    }
+    return files.every((file) => file.to !== null);
+  }
+
   return (
     <Card className="w-full border-none rounded-2xl">
       <CardContent className="text-textColor p-4 sm:p-6">
@@ -48,6 +62,7 @@ const FileConverter: FC<IFileConverterProps> = () => {
                 <Button
                   variant="outline"
                   className="bg-transparent select-none rounded-lg h-[30px] gap-1 px-2 font-public-sans font-semibold text-xs flex text-textColor border-[rgba(145,158,171,0.32)] shadow-none"
+                  onClick={onDownloadAll}
                 >
                   <ArrowCircleDownFill />
                   Download All
@@ -55,7 +70,7 @@ const FileConverter: FC<IFileConverterProps> = () => {
               )}
               <Button
                 variant="default"
-                disabled={isConverting}
+                disabled={isConverting || !canConvertAllFiles()}
                 className="bg-textColor gap-1 select-none rounded-lg h-[30px] font-public-sans font-semibold text-xs flex hover:bg-textColor shadow-none hover:opacity-90"
                 onClick={onConvertAll}
               >

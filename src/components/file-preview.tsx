@@ -27,7 +27,7 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
     is_error,
   } = file;
 
-  const { setFiles, isConverting } = useAppContext();
+  const { setFiles, isConverting, onDownload } = useAppContext();
 
   return (
     <div className="flex flex-col sm:flex-row relative items-start  sm:items-center gap-3 rounded-lg border border-[rgba(145,158,171,0.16)] py-2 pr-2 pl-3">
@@ -48,7 +48,12 @@ const FilePreview: FC<IFilePreviewProps> = ({ file }) => {
         />
         {is_converted && (
           <>
-            <button className="min-w-[98px] bg-transparent flex items-center [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-public-sans font-semibold text-xs text-textColor border border-[rgba(145,158,171,0.32)] shadow-none outline-none focus:outline-none focus:ring-0 gap-1 rounded-lg h-[30px] px-2">
+            <button
+              onClick={() => {
+                onDownload(file);
+              }}
+              className="min-w-[98px] bg-transparent flex items-center [&_svg]:pointer-events-none [&_svg]:size-4 [&_svg]:shrink-0 font-public-sans font-semibold text-xs text-textColor border border-[rgba(145,158,171,0.32)] shadow-none outline-none focus:outline-none focus:ring-0 gap-1 rounded-lg h-[30px] px-2"
+            >
               <ArrowCircleDownFill />
               Download
             </button>
