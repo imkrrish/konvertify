@@ -34,10 +34,9 @@ const Footer: FC<IFooterProps> = () => {
           </div>
           <div>
             <p className="text-sm text-center sm:text-left font-public-sans text-textColor font-normal w-full max-w-80">
-              Transform your images, audio, and videos effortlessly on your
-              device with Konvertify! Enjoy fast, secure conversions without
-              uploading to the cloud. Unlock the power of seamless multimedia
-              transformation and keep your files private—all for free!
+              Simple file conversions? Konvertify's got you covered! Fast, free,
+              secure, and right on your device. Consider it your pocket-sized
+              file transformation expert!
             </p>
           </div>
         </div>
