@@ -1,10 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { FC } from "react";
 
-export const Route = createLazyFileRoute("/privacy-policy")({
-  component: RouteComponent,
-});
+export interface IPrivacyPolicyPageProps {}
 
-function RouteComponent() {
+const PrivacyPolicyPage: FC<IPrivacyPolicyPageProps> = () => {
   return (
     <div className="px-3 w-full">
       <div className="max-w-[720px] w-full mx-auto font-public-sans text-textColor py-8">
@@ -140,4 +139,8 @@ function RouteComponent() {
       </div>
     </div>
   );
-}
+};
+
+export const Route = createLazyFileRoute("/privacy-policy")({
+  component: PrivacyPolicyPage,
+});

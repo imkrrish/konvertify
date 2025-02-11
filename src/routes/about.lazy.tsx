@@ -1,10 +1,9 @@
 import { createLazyFileRoute } from "@tanstack/react-router";
+import { FC } from "react";
 
-export const Route = createLazyFileRoute("/about")({
-  component: RouteComponent,
-});
+export interface IAboutPageProps {}
 
-function RouteComponent() {
+const AboutPage: FC<IAboutPageProps> = () => {
   return (
     <div className="px-3 w-full">
       <div className="max-w-[720px] w-full mx-auto font-public-sans text-textColor py-8">
@@ -76,4 +75,8 @@ function RouteComponent() {
       </div>
     </div>
   );
-}
+};
+
+export const Route = createLazyFileRoute("/about")({
+  component: AboutPage,
+});
