@@ -27,8 +27,8 @@ export const extensions = {
     "ico",
     "tif",
     "tiff",
-    "svg",
-    "raw",
+    // "svg",
+    // "raw",
     "tga",
   ],
   video: [
