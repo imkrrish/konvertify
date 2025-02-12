@@ -6,6 +6,7 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { Button } from "./ui/button";
 import { Github } from "./icons/github";
 import Sidebar from "./sidebar";
+import { githubLink } from "@/lib/constants";
 
 export interface INavbarProps {}
 
@@ -56,13 +57,15 @@ const Navbar: FC<INavbarProps> = () => {
           </div>
           <div className="flex items-center gap-3">
             <ModeToggle />
-            <Button
-              variant="default"
-              className="bg-textColor hidden sm:flex hover:bg-textColor hover:opacity-90"
-            >
-              <Github />
-              Github
-            </Button>
+            <a href={githubLink} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="default"
+                className="bg-textColor hidden sm:flex hover:bg-textColor hover:opacity-90"
+              >
+                <Github />
+                Github
+              </Button>
+            </a>
           </div>
         </div>
       </div>

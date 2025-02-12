@@ -13,6 +13,7 @@ import { useLocation, useNavigate } from "@tanstack/react-router";
 import { cn } from "@/lib/utils";
 import { Button } from "./ui/button";
 import { Github } from "./icons/github";
+import { githubLink } from "@/lib/constants";
 
 export interface ISidebarProps {
   links: {
@@ -97,13 +98,15 @@ const Sidebar: FC<ISidebarProps> = ({ links }) => {
           </div>
 
           <div className="px-5 pb-6 w-full">
-            <Button
-              variant="default"
-              className="bg-textColor w-full flex hover:bg-textColor hover:opacity-90"
-            >
-              <Github />
-              Github
-            </Button>
+            <a href={githubLink} target="_blank" rel="noopener noreferrer">
+              <Button
+                variant="default"
+                className="bg-textColor w-full flex hover:bg-textColor hover:opacity-90"
+              >
+                <Github />
+                Github
+              </Button>
+            </a>
           </div>
         </div>
       </SheetContent>

@@ -4,6 +4,7 @@ import { useNavigate } from "@tanstack/react-router";
 import { links } from "./navbar";
 import { Button } from "./ui/button";
 import { Github } from "./icons/github";
+import { githubLink, profileLink } from "@/lib/constants";
 
 export interface IFooterProps {}
 
@@ -79,7 +80,7 @@ const Footer: FC<IFooterProps> = () => {
         Built by{" "}
         <a
           className="underline"
-          href="http://"
+          href={profileLink}
           target="_blank"
           rel="noopener noreferrer"
         >
@@ -88,7 +89,7 @@ const Footer: FC<IFooterProps> = () => {
         . The source code is available on{" "}
         <a
           className="underline"
-          href="http://"
+          href={githubLink}
           target="_blank"
           rel="noopener noreferrer"
         >

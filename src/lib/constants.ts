@@ -51,3 +51,6 @@ export const extensions = {
   ],
   audio: ["mp3", "wav", "ogg", "aac", "wma", "flac", "m4a"],
 };
+
+export const githubLink = "https://github.com/imkrrish/konvertify";
+export const profileLink = "https://www.linkedin.com/in/imkrrish/";
