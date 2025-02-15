@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { FC } from "react";
 
 export interface IAboutPageProps {}
@@ -77,6 +77,6 @@ const AboutPage: FC<IAboutPageProps> = () => {
   );
 };
 
-export const Route = createLazyFileRoute("/about")({
+export const Route = createFileRoute("/about")({
   component: AboutPage,
 });

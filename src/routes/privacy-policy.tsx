@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { FC } from "react";
 
 export interface IPrivacyPolicyPageProps {}
@@ -141,6 +141,6 @@ const PrivacyPolicyPage: FC<IPrivacyPolicyPageProps> = () => {
   );
 };
 
-export const Route = createLazyFileRoute("/privacy-policy")({
+export const Route = createFileRoute("/privacy-policy")({
   component: PrivacyPolicyPage,
 });

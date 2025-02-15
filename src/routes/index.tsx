@@ -1,4 +1,4 @@
-import { createLazyFileRoute } from "@tanstack/react-router";
+import { createFileRoute } from "@tanstack/react-router";
 import { FC } from "react";
 import FileConverterCard from "@/components/file-converter-card";
 
@@ -30,6 +30,6 @@ const Home: FC<IHomeProps> = () => {
   );
 };
 
-export const Route = createLazyFileRoute("/")({
+export const Route = createFileRoute("/")({
   component: Home,
 });

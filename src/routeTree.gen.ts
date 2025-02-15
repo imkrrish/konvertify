@@ -8,39 +8,32 @@
 // You should NOT make any changes in this file as it will be overwritten.
 // Additionally, you should also exclude this file from your linter and/or formatter to prevent it from being checked or modified.
 
-import { createFileRoute } from '@tanstack/react-router'
-
 // Import Routes
 
 import { Route as rootRoute } from './routes/__root'
-
-// Create Virtual Routes
-
-const PrivacyPolicyLazyImport = createFileRoute('/privacy-policy')()
-const AboutLazyImport = createFileRoute('/about')()
-const IndexLazyImport = createFileRoute('/')()
+import { Route as PrivacyPolicyImport } from './routes/privacy-policy'
+import { Route as AboutImport } from './routes/about'
+import { Route as IndexImport } from './routes/index'
 
 // Create/Update Routes
 
-const PrivacyPolicyLazyRoute = PrivacyPolicyLazyImport.update({
+const PrivacyPolicyRoute = PrivacyPolicyImport.update({
   id: '/privacy-policy',
   path: '/privacy-policy',
   getParentRoute: () => rootRoute,
-} as any).lazy(() =>
-  import('./routes/privacy-policy.lazy').then((d) => d.Route),
-)
+} as any)
 
-const AboutLazyRoute = AboutLazyImport.update({
+const AboutRoute = AboutImport.update({
   id: '/about',
   path: '/about',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/about.lazy').then((d) => d.Route))
+} as any)
 
-const IndexLazyRoute = IndexLazyImport.update({
+const IndexRoute = IndexImport.update({
   id: '/',
   path: '/',
   getParentRoute: () => rootRoute,
-} as any).lazy(() => import('./routes/index.lazy').then((d) => d.Route))
+} as any)
 
 // Populate the FileRoutesByPath interface
 
@@ -50,21 +43,21 @@ declare module '@tanstack/react-router' {
       id: '/'
       path: '/'
       fullPath: '/'
-      preLoaderRoute: typeof IndexLazyImport
+      preLoaderRoute: typeof IndexImport
       parentRoute: typeof rootRoute
     }
     '/about': {
       id: '/about'
       path: '/about'
       fullPath: '/about'
-      preLoaderRoute: typeof AboutLazyImport
+      preLoaderRoute: typeof AboutImport
       parentRoute: typeof rootRoute
     }
     '/privacy-policy': {
       id: '/privacy-policy'
       path: '/privacy-policy'
       fullPath: '/privacy-policy'
-      preLoaderRoute: typeof PrivacyPolicyLazyImport
+      preLoaderRoute: typeof PrivacyPolicyImport
       parentRoute: typeof rootRoute
     }
   }
@@ -73,22 +66,22 @@ declare module '@tanstack/react-router' {
 // Create and export the route tree
 
 export interface FileRoutesByFullPath {
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/privacy-policy': typeof PrivacyPolicyLazyRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 
 export interface FileRoutesByTo {
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/privacy-policy': typeof PrivacyPolicyLazyRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 
 export interface FileRoutesById {
   __root__: typeof rootRoute
-  '/': typeof IndexLazyRoute
-  '/about': typeof AboutLazyRoute
-  '/privacy-policy': typeof PrivacyPolicyLazyRoute
+  '/': typeof IndexRoute
+  '/about': typeof AboutRoute
+  '/privacy-policy': typeof PrivacyPolicyRoute
 }
 
 export interface FileRouteTypes {
@@ -101,15 +94,15 @@ export interface FileRouteTypes {
 }
 
 export interface RootRouteChildren {
-  IndexLazyRoute: typeof IndexLazyRoute
-  AboutLazyRoute: typeof AboutLazyRoute
-  PrivacyPolicyLazyRoute: typeof PrivacyPolicyLazyRoute
+  IndexRoute: typeof IndexRoute
+  AboutRoute: typeof AboutRoute
+  PrivacyPolicyRoute: typeof PrivacyPolicyRoute
 }
 
 const rootRouteChildren: RootRouteChildren = {
-  IndexLazyRoute: IndexLazyRoute,
-  AboutLazyRoute: AboutLazyRoute,
-  PrivacyPolicyLazyRoute: PrivacyPolicyLazyRoute,
+  IndexRoute: IndexRoute,
+  AboutRoute: AboutRoute,
+  PrivacyPolicyRoute: PrivacyPolicyRoute,
 }
 
 export const routeTree = rootRoute
@@ -128,13 +121,13 @@ export const routeTree = rootRoute
       ]
     },
     "/": {
-      "filePath": "index.lazy.tsx"
+      "filePath": "index.tsx"
     },
     "/about": {
-      "filePath": "about.lazy.tsx"
+      "filePath": "about.tsx"
     },
     "/privacy-policy": {
-      "filePath": "privacy-policy.lazy.tsx"
+      "filePath": "privacy-policy.tsx"
     }
   }
 }
