@@ -1,6 +1,9 @@
 {
-  "short_name": "konvertify",
+  "short_name": "Konvertify",
   "name": "Konvertify",
+  "start_url": "/",
+  "scope": "/",
+  "display": "standalone",
   "icons": [
     {
       "src": "/android-icon-192x192.png",
